@@ -1,0 +1,54 @@
+.login-container{
+    margin-top: 2%;
+    margin-bottom: 5%;
+
+}
+.login-form-1{
+    padding: 2%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #000000ce;
+}
+
+.login-container form{
+    padding: 2%;
+}
+.btnSubmit{
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    margin-top: 5%;
+    font-weight: 600;
+    color: #fff;
+    background-color: #000000ce;
+}
+
+.missingFields {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.missingFieldsGreen {
+    color: rgb(86, 226, 21);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form-control {
+    display: block;
+}
+
+.labelForm2 {
+    color:white;
+}
+

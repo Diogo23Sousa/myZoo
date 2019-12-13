@@ -1,0 +1,29 @@
+<div class="myMainClass">
+<table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">
+                <button class="btn btn-sm btn-success" (click)="generateNewAnimals()">genAll</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteAllAnimals()">delAll</button>
+            </th>
+            <th scope="col">Animal Name</th>
+            <th scope="col">Specie</th>
+            <th scope="col">Age</th>
+          </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td> <button class="btn btn-sm btn-primary" (click)="clearAnimalFilter()">Clear Filter</button></td>
+                    <td> <input type="text" class="myInputStyle" [(ngModel)]="nameInput" name="nameInput"(ngModelChange)="getAnimalByLetter(nameInput)"> </td>
+                    <td> <input type="text" class="myInputStyle" [(ngModel)]="specieInput" (ngModelChange)="getAnimalBySpecieLetter()"> </td>
+                    <td> <input type="text" class="myInputStyle" [(ngModel)]="ageInput" (ngModelChange)="getAnimalByAgeNumber()"> </td>
+                      </tr>
+          <tr *ngFor="let animal of animals">
+            <td> <button class="btn btn-sm btn-danger" (click)="deleteAnimalById(animal.id)">x</button></td>
+            <td>{{animal.animalName}}</td>
+            <td>{{animal.animalSpecie}}</td>
+            <td>{{animal.animalAge}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
