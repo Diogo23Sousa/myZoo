@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'animals', component: CheckAnimalsComponent},
   { path: 'user', component: UserLoginComponent},
   { path: 'ourusers', component: OurUsersComponent},
-  { path: 'userlogin', component: UserLoginComponent},
+  { path: 'login', component: UserLoginComponent},
   { path: 'createuser', component: CreateNewUserComponent}
 ];
 

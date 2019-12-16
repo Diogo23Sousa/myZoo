@@ -34,4 +34,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Getting my users by containing this char or words in age
     @Query(value = "SELECT * FROM user WHERE user.age LIKE %:number% ", nativeQuery = true)
     Optional<List<User>> findByContainsNumber (Long number);
+
+    // Checking if the username and password given are valid
+    @Query(value = "SELECT * FROM user WHERE user.name LIKE %:name% AND user.password LIKE %:password%", nativeQuery = true)
+    Optional <User> userLogin (String name, String password);
 }
