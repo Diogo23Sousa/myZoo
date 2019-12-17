@@ -12,6 +12,7 @@ public class User implements Serializable {
     private String password;
     private String email;
     private Long age;
+    private String role;
 
     public User() {
     }
@@ -23,12 +24,13 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    public User(Long id, String name, String password, String email, Long age) {
+    public User(Long id, String name, String password, String email, Long age, String role) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
         this.age = age;
+        this.role = role;
     }
 
     public Long getId() {
@@ -69,5 +71,13 @@ public class User implements Serializable {
 
     public void setAge(Long age) {
         this.age = age;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.LoginUser;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,9 +82,8 @@ public class UserController {
     }
 
     @PostMapping("user/login")
-    public String userLogin (@RequestAttribute  String name, @RequestAttribute String password) {
-    System.out.println("Name:" + name + "Password: " + password);
-    userRepository.userLogin(name, password);
-    return  userRepository.userLogin(name, password).toString();
+    public Optional<User> userLogin (@RequestBody LoginUser loginUser) {
+    System.out.println("Name:" + loginUser.getName() + "Password: " + loginUser.getPassword());
+    return userRepository.userLogin(loginUser.getName(), loginUser.getPassword());
     }
 }

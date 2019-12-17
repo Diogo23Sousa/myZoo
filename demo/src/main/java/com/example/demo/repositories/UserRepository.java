@@ -36,6 +36,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<List<User>> findByContainsNumber (Long number);
 
     // Checking if the username and password given are valid
-    @Query(value = "SELECT * FROM user WHERE user.name LIKE %:name% AND user.password LIKE %:password%", nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE user.name LIKE :name AND user.password LIKE :password", nativeQuery = true)
     Optional <User> userLogin (String name, String password);
 }
