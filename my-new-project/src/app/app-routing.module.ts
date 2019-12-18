@@ -11,9 +11,9 @@ import { AuthGuard } from './security-services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
-  { path: 'createanimals', component: CreateNewAnimalComponent},
+  { path: 'createanimals', canActivate:[AuthGuard], component: CreateNewAnimalComponent},
   { path: 'animals', canActivate:[AuthGuard], component: CheckAnimalsComponent},
-  { path: 'ourusers', component: OurUsersComponent},
+  { path: 'ourusers', canActivate:[AuthGuard], component: OurUsersComponent},
   { path: 'login', component: UserLoginComponent},
   { path: 'createuser', component: CreateNewUserComponent}
 ];

@@ -33,12 +33,16 @@
     color: #ffffff;
     background-color: rgba(61, 223, 39, 0.829);
 }
-.login-form-2 .ForgetPwd{
+.login-form-2 .forgetPwd{
     margin: 2%;
     color: rgb(255, 255, 255);
     font-weight: 600;
     text-decoration: under;
     text-align: center;
+}
+
+.textStyle {
+    color: white;
 }
 
 .missingFields {

@@ -16,9 +16,11 @@
                     <div class="alert alert-danger" [style.display]='invalidLogin'>
                         <strong> Unsucessfull login.</strong>
                     </div>
-                    <button class="btnSubmit" (click)="logIn()">Log In</button>
-                    <div class="form-group ForgetPwd">
-                       Forgot your password?
+                    <button class="btnSubmit" (click)="logIn()">Log In</button> <br>
+                   
+                    <div class="form-group forgetPwd">
+                        <a class="textStyle" routerLink="/createuser"> Create Account</a> <br>
+                        <a class="textStyle" routerLink="/createuser"> Forgot your password?</a>
                     </div>
                 </form>
         </div>

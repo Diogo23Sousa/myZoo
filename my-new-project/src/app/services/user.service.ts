@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +21,7 @@ private userUrl: string;
   }
 
   public newUser (user: User) {
-    return this.httpClient.post<User>(this.userUrl.concat('/create'), JSON.stringify(user));
+    return this.httpClient.post<User>(this.userUrl.concat('/create'), JSON.stringify(user), httpOptions);
   } 
 
   public generateUsers(body: String) {

@@ -15,11 +15,6 @@ public class UserController {
     @Autowired
     public UserRepository userRepository;
 
-    @GetMapping("/hello")
-    public String printTest () {
-        return "THE METHOD WAS CALLED!";
-    }
-
     @GetMapping("/user/getall")
     public List<User> findAll () {
         return userRepository.findAll();

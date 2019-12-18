@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Animal } from '../models/animal';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +22,7 @@ private animalUrl: string;
   }
 
   public newAnimal (animal: Animal) {
-    return this.httpClient.post<Animal>(this.animalUrl.concat('/create'), JSON.stringify(animal));
+    return this.httpClient.post<Animal>(this.animalUrl.concat('/create'), JSON.stringify(animal), httpOptions);
   } 
 
   public generateAnimals(body: String) {
