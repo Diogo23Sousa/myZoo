@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/security-services/authentication.service';
+
 
 @Component({
   selector: 'app-user-login',
@@ -11,31 +12,43 @@ import { User } from 'src/app/models/user';
 
 @Injectable()
 export class UserLoginComponent implements OnInit {
-userNameLogin: String;
-passwordLogin: String;
-missingParameters: String = 'none';
-missingParametersPassword: String = 'none';
-missingMatchParametersPassword: String = 'none';
-userCreatedSucess: String = 'none';
+userNameLogin: String = "";
+passwordLogin: String = "";
+validLogin: String = 'none';
+invalidLogin: String = 'none';
 
-  constructor(private userService : UserService) {
+  constructor(private authenticationService : AuthenticationService) {
    }
 
   ngOnInit() {
   }
 
-  logIn () {
-    this.userService.logIn(this.userNameLogin, this.passwordLogin).subscribe(user => {
-      if (user != null) {
-        console.log("USERNAME IS VALID: " + JSON.stringify(user));
-      }
-      else {
-        console.log("INVALID USERNAME")
-      }
-    });
-
+  logIn() {
+    if (this.userNameLogin == "" || this.passwordLogin == "") {
+      this.validLogin = 'none';
+      this.invalidLogin = '';
+    }
+    else {
+      this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(userData => {
+          console.log("Login was sucessfull: " + userData);
+          this.validLogin = '';
+          this.invalidLogin = 'none';
+          location.href="/";
+      })
+    }
+    // else if (this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(x => console.log(x)) === null){
+    //   this.validLogin = 'none';
+    //   this.invalidLogin = '';
+    //   this.missingParameters = 'none';
+    // }
+    // else {
+    //   this.validLogin = '';
+    //   this.invalidLogin = 'none';
+    //   this.missingParameters = 'none';
+    //   this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(userData => {
+    //     console.log("Login was sucessfull: " + userData);
+    //   location.href = "/";
+    // });
+    // }
   }
-
-  
-
 }

@@ -3,6 +3,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @Entity
@@ -62,4 +63,5 @@ public class Animal implements Serializable {
     public void setAnimalAge(Long animalAge) {
         this.animalAge = animalAge;
     }
+
 }

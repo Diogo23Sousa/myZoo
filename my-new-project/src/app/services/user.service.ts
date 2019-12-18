@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Animal } from '../models/animal';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-private users : User [];
 private userUrl: string;
  
   constructor(private httpClient: HttpClient) {
@@ -23,7 +17,7 @@ private userUrl: string;
   }
 
   public newUser (user: User) {
-    return this.httpClient.post<User>(this.userUrl.concat('/create'), JSON.stringify(user), httpOptions);
+    return this.httpClient.post<User>(this.userUrl.concat('/create'), JSON.stringify(user));
   } 
 
   public generateUsers(body: String) {
@@ -61,10 +55,4 @@ private userUrl: string;
   public deleteAll() {
     return this.httpClient.delete(this.userUrl.concat('/deleteall'));
   }
-
-  public logIn (username: String, password: String) {
-    return this.httpClient.get<User>(this.userUrl.concat('/login' + username + password));
-  }
-
-  
 }

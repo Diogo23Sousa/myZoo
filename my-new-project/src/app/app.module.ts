@@ -6,7 +6,7 @@ import { CreateNewAnimalComponent } from './components/create-new-animal/create-
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { CheckAnimalsComponent } from './components/check-animals/check-animals.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AnimalService } from './services/animal.service';
 import { UserService } from './services/user.service';
@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { OurUsersComponent } from './components/our-users/our-users.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { CreateNewUserComponent } from './components/create-new-user/create-new-user.component';
+import { AuthenticationService } from './security-services/authentication.service';
+import { AuthGuard } from './security-services/auth-guard.service';
+import { AuthHttpInterceptorService } from './security-services/auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,11 @@ import { CreateNewUserComponent } from './components/create-new-user/create-new-
     CommonModule,
     FormsModule
   ],
-  providers: [AnimalService, UserService],
+  providers: [AnimalService, UserService, AuthenticationService, AuthGuard,  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthHttpInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

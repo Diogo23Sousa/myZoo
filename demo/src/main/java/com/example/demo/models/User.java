@@ -1,6 +1,11 @@
 package com.example.demo.models;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class User implements Serializable {
@@ -17,11 +22,24 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public User(String name, String password, String email, Long age) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.age = age;
+    }
+
+    public User(String name, String password, String email, Long age, String role) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.role = role;
     }
 
     public User(Long id, String name, String password, String email, Long age, String role) {

@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.LoginUser;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,11 @@ public class UserController {
 
     @Autowired
     public UserRepository userRepository;
+
+    @GetMapping("/hello")
+    public String printTest () {
+        return "THE METHOD WAS CALLED!";
+    }
 
     @GetMapping("/user/getall")
     public List<User> findAll () {
@@ -35,7 +39,6 @@ public class UserController {
     public Optional<List<User>> findByLetter(@PathVariable ("letter") String letter){
         return userRepository.findByContainsLetter(letter);
     }
-
 
     @GetMapping("/user/getbyage/{age}")
     public Optional<List<User>> findByName(@PathVariable ("age") Long age){
@@ -59,11 +62,11 @@ public class UserController {
 
     @PostMapping("user/generate")
     public void generateUsers() {
-        userRepository.save(new User("Diogo", "test", "diogo@email.com", (long)26));
-        userRepository.save(new User("Eduardo","test", "eduardo@email.com", (long)27));
-        userRepository.save(new User("Rafaela", "test","rafaela@email.com", (long)21));
-        userRepository.save(new User("Luisa", "test", "luisa@email.com", (long)50));
-        userRepository.save(new User("Luis","test", "luis@email.com", (long)55));
+        userRepository.save(new User("Diogo", "test", "diogo@email.com", (long)26, "ADMIN"));
+        userRepository.save(new User("Eduardo","test", "eduardo@email.com", (long)27, "USER"));
+        userRepository.save(new User("Rafaela", "test","rafaela@email.com", (long)21, "USER"));
+        userRepository.save(new User("Luisa", "test", "luisa@email.com", (long)50, "USER"));
+        userRepository.save(new User("Luis","test", "luis@email.com", (long)55, "USER"));
     }
 
     @PostMapping("/user/create")
@@ -81,9 +84,4 @@ public class UserController {
         userRepository.deleteById(id);
     }
 
-    @PostMapping("user/login")
-    public Optional<User> userLogin (@RequestBody LoginUser loginUser) {
-    System.out.println("Name:" + loginUser.getName() + "Password: " + loginUser.getPassword());
-    return userRepository.userLogin(loginUser.getName(), loginUser.getPassword());
-    }
 }

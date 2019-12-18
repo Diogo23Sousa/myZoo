@@ -5,8 +5,7 @@ import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-create-new-user',
   templateUrl: './create-new-user.component.html',
-  styleUrls: ['./create-new-user.component.css'],
-  providers: [UserService]
+  styleUrls: ['./create-new-user.component.css']
 })
 
 @Injectable()
@@ -27,8 +26,7 @@ nameAvailable: String = 'none';
 emailUnavailable: String = 'none';
 
 
-  constructor(private userService : UserService) {
-   }
+  constructor(private userService : UserService) { }
 
   ngOnInit() {
   }
@@ -61,14 +59,14 @@ emailUnavailable: String = 'none';
     }
     if (this.userName !== null) {
   this.userService.findByName(this.userName).subscribe(nameInput => {
-    if (nameInput == null) {
+    if (nameInput === null) {
       this.nameUnavailable = 'none';
       this.nameAvailable = '';
-      this.booleanUsernameAvailable = false;
+      this.booleanUsernameAvailable = true;
     } else {
       this.nameAvailable = 'none';
       this.nameUnavailable = '';
-      this.booleanUsernameAvailable = true;
+      this.booleanUsernameAvailable = false;
     }
   });
 }
@@ -78,6 +76,7 @@ checkExistingEmail() {
   if (this.email === '') {
     this.email = null;
   }
+
 this.userService.findByEmail(this.email).subscribe(emailInput => {
   if (emailInput !== null) {
     this.emailUnavailable = '';
@@ -90,9 +89,11 @@ this.userService.findByEmail(this.email).subscribe(emailInput => {
 }
 
   createNewUser() {
+
     this.ngModelValidation();
     if (this.userName != null && this.email != null && this.age != null && this.password != null 
       && this.booleanEmailAvailable === true && this.booleanUsernameAvailable === true){
+      console.log("SERVICE SUCESS");
       const user = new User (this.userName, this.password, this.email, this.age);
       this.userService.newUser(user).subscribe(x => console.log(x));
       this.missingParameters = 'none';
