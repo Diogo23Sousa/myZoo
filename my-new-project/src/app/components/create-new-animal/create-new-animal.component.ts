@@ -14,6 +14,8 @@ export class CreateNewAnimalComponent implements OnInit {
 animalName: String;
 animalSpecie: String;
 animalAge: number;
+animalImage: String;
+animalDescription: String;
 missingParameters : String = 'none';
 missingNumberParameters: String = 'none';
 animalCreatedSucess: String = 'none';
@@ -33,13 +35,15 @@ animalCreatedSucess: String = 'none';
       this.animalCreatedSucess = 'none';}
     if (this.animalAge != null && isNaN(this.animalAge)) {this.missingNumberParameters = '';
     this.animalCreatedSucess = 'none';}
+    if (this.animalDescription == '') {this.animalDescription = "No Description is available for this animal.";}
+    if (this.animalImage == '') { this.animalImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKHDuxy1qrI0duPY4vRpy5aJZniYuq7SHGthof-SzT38CVexCcw&s";}
   }
 
 
   createNewAnimal(){
     this.ngModelValidation();
     if (this.animalName != null && this.animalSpecie != null && this.animalAge != null && !isNaN(this.animalAge)){
-      var animal = new Animal(this.animalName, this.animalSpecie, this.animalAge);
+       var animal = new Animal(this.animalName, this.animalSpecie, this.animalAge, this.animalImage, this.animalDescription);
       this.animalService.newAnimal(animal).subscribe(x => console.log(x));
       this.missingNumberParameters = 'none';
       this.missingParameters = 'none';

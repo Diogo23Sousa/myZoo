@@ -15,21 +15,30 @@ public class Animal implements Serializable {
     private String animalName;
     private String animalSpecie;
     private Long animalAge;
+    private String animalImage;
+
+    @Column(columnDefinition = "nvarchar(4000)")
+    private String animalDescription;
 
     public Animal() {
     }
 
-    public Animal(String animalName, String animalSpecie, Long animalAge) {
+    public Animal(String animalName, String animalSpecie, Long animalAge, String animalImage, String animalDescription) {
         this.animalName = animalName;
         this.animalSpecie = animalSpecie;
         this.animalAge = animalAge;
+        this.animalImage = animalImage;
+        this.animalDescription = animalDescription;
     }
 
-    public Animal(Long id, String animalName, String animalSpecie, Long animalAge) {
+    public Animal(Long id, String animalName, String animalSpecie, Long animalAge, String animalImage, String animalDescription) {
         this.id = id;
         this.animalName = animalName;
         this.animalSpecie = animalSpecie;
         this.animalAge = animalAge;
+        this.animalImage = animalImage;
+        this.animalDescription = animalDescription;
+
     }
 
     public Long getId() {
@@ -64,4 +73,11 @@ public class Animal implements Serializable {
         this.animalAge = animalAge;
     }
 
+    public String getAnimalImage() {return animalImage;}
+
+    public void setAnimalImage(String animalImage) {this.animalImage = animalImage;}
+
+    public String getAnimalDescription() {return animalDescription;}
+
+    public void setAnimalDescription(String animalDescription) {this.animalDescription = animalDescription;}
 }

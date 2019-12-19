@@ -1,16 +1,15 @@
 import { Component, OnInit, Output, Injectable } from '@angular/core';
 import { AnimalService } from 'src/app/services/animal.service';
 import { Animal } from 'src/app/models/animal';
-import { all } from 'q';
 
 @Component({
-  selector: 'app-check-animals',
-  templateUrl: './check-animals.component.html',
-  styleUrls: ['./check-animals.component.css'],
+  selector: 'app-our-animals',
+  templateUrl: './our-animals.component.html',
+  styleUrls: ['./our-animals.component.css'],
   providers: [AnimalService]
 })
 @Injectable()
-export class CheckAnimalsComponent implements OnInit {
+export class OurAnimalsComponent implements OnInit {
   animals: Animal [];
   nameInput: String;
   specieInput: String;

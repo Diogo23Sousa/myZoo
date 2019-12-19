@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF (Cross-site request forgery)
 		httpSecurity.csrf().disable()
 				// The routes I want to allow my user to use without LOGIN (Create User and check Name and Email Availability)
-				.authorizeRequests().antMatchers("/user/create", "/user/getbyname/**", "/user/getbyemail/**").permitAll().and()
+				.authorizeRequests().antMatchers("/user/create", "/user/getbyname/**", "/user/getbyemail/**", "/animal/getall").permitAll().and()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
 				.permitAll().
@@ -74,7 +74,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// make sure we use stateless session; session won't be used to store user's state.
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 
 
 		// Add a filter to validate the tokens with every request

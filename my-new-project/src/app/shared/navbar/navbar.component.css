@@ -1,0 +1,11 @@
+.welcomeDiv {
+    color: white;
+    margin-right: 2%;
+    font-weight: 700;
+}
+
+.adminDiv {
+    color: red;
+    font-weight: bold;
+    margin-right: 1%;
+}

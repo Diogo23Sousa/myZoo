@@ -14,6 +14,7 @@ export class OurUsersComponent implements OnInit {
   nameInput: String;
   emailInput: String;
   ageInput: String;
+  roleInput: String;
 
   constructor(private userService: UserService) {
   }
@@ -39,7 +40,7 @@ export class OurUsersComponent implements OnInit {
     })
   }
   getUserByLetter() {
-    this.emailInput = this.ageInput = '';
+    this.emailInput = this.ageInput = this.roleInput = '';
     if (this.nameInput == '') {this.getAllUsers()}
     else {
       this.userService.findByLetter(this.nameInput).subscribe(usersWithLetter => {
@@ -49,7 +50,7 @@ export class OurUsersComponent implements OnInit {
   }
 
   getUserByEmailLetter () {
-    this.nameInput = this.ageInput = '';
+    this.nameInput = this.ageInput = this.roleInput = '';
     if (this.emailInput == '') {this.getAllUsers()}
     else {
       this.userService.findEmailByLetter(this.emailInput).subscribe(speciesWithLetter => {
@@ -59,11 +60,20 @@ export class OurUsersComponent implements OnInit {
   }
 
   getUserByAgeNumber () {
-    this.nameInput = this.emailInput = '';
+    this.nameInput = this.emailInput = this.roleInput = '';
     if (this.ageInput == '') {this.getAllUsers()}
     else {
       this.userService.findAgeByNumber(this.ageInput).subscribe(ageWithNumber => {
         this.users = ageWithNumber;
+      })
+    }
+  }
+
+  getUsersByRole() {
+    if (this.roleInput == '') {this.getAllUsers()}
+    else {
+      this.userService.findByRole(this.roleInput).subscribe(usersWithRole => {
+        this.users = usersWithRole;
       })
     }
   }
@@ -79,7 +89,7 @@ export class OurUsersComponent implements OnInit {
   }
 
   clearUserFilter () {
-    this.nameInput = this.emailInput = this.ageInput = '';
+    this.nameInput = this.emailInput = this.ageInput = this.roleInput = '';
     this.getAllUsers();
   }
 }

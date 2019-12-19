@@ -38,4 +38,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Checking if the username and password given are valid
     @Query(value = "SELECT * FROM user WHERE user.name LIKE :name AND user.password LIKE :password", nativeQuery = true)
     Optional <User> userLogin (String name, String password);
+
+    // Getting Users by Role
+    @Query(value = "SELECT * FROM user WHERE user.role = :role", nativeQuery = true)
+    Optional <List <User>> findByRole (String role);
 }

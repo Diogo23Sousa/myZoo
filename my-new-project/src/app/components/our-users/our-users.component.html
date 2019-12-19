@@ -10,6 +10,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Age</th>
+                    <th scope="col">Role</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -18,12 +19,22 @@
                             <td> <input type="text" class="myInputStyle" [(ngModel)]="nameInput" (ngModelChange)="getUserByLetter()"> </td>
                             <td> <input type="text" class="myInputStyle" [(ngModel)]="emailInput" (ngModelChange)="getUserByEmailLetter()"> </td>
                             <td> <input type="text" class="myInputStyle" [(ngModel)]="ageInput" (ngModelChange)="getUserByAgeNumber()"> </td>
-                              </tr>
+                          <td>
+                              <div class="form-group">
+                                <select class="form-control" [(ngModel)]="roleInput" (ngModelChange)="getUsersByRole()">
+                                  <option value="" selected="selected">ALL</option>
+                                  <option value="USER">USER</option>
+                                  <option value="ADMIN">ADMIN</option>
+                                </select>
+                              </div>                   
+                          </td>
+                        </tr>
                   <tr *ngFor="let user of users">
                     <td> <button class="btn btn-sm btn-danger" (click)="deleteUserById(user.id)">x</button></td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.age}}</td>
+                    <td>{{user.role}}</td>
                   </tr>
                 </tbody>
               </table>

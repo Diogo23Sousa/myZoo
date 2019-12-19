@@ -56,6 +56,10 @@ private userUrl: string;
     return this.httpClient.get<User[]>(this.userUrl.concat('/getbynumber/' + number));
   }
 
+  public findByRole (role: String) {
+    return this.httpClient.get<User[]>(this.userUrl.concat("/getbyrole/" + role));
+  }
+
   public deleteAll() {
     return this.httpClient.delete(this.userUrl.concat('/deleteall'));
   }

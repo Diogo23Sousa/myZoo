@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CreateNewAnimalComponent } from './components/create-new-animal/create-new-animal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { CheckAnimalsComponent } from './components/check-animals/check-animals.component';
+import { OurAnimalsComponent } from './components/our-animals/our-animals.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AnimalService } from './services/animal.service';
@@ -18,6 +18,7 @@ import { CreateNewUserComponent } from './components/create-new-user/create-new-
 import { AuthenticationService } from './security-services/authentication.service';
 import { AuthGuard } from './security-services/auth-guard.service';
 import { AuthHttpInterceptorService } from './security-services/auth-http-interceptor.service';
+import { OurZooComponent } from './components/our-zoo/our-zoo.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,12 @@ import { AuthHttpInterceptorService } from './security-services/auth-http-interc
     CreateNewAnimalComponent,
     NavbarComponent,
     FooterComponent,
-    CheckAnimalsComponent,
+    OurAnimalsComponent,
     HomePageComponent,
     OurUsersComponent,
     UserLoginComponent,
-    CreateNewUserComponent
+    CreateNewUserComponent,
+    OurZooComponent
      
   ],
   imports: [

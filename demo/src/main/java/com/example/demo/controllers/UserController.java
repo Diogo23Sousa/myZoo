@@ -55,13 +55,18 @@ public class UserController {
         return userRepository.findByEmailContainsLetter(letter);
     }
 
+    @GetMapping("user/getbyrole/{role}")
+    public Optional <List<User>> findByRole (@PathVariable ("role") String role ) {
+        return userRepository.findByRole(role);
+    }
+
     @PostMapping("user/generate")
     public void generateUsers() {
-        userRepository.save(new User("Diogo", "test", "diogo@email.com", (long)26, "ADMIN"));
-        userRepository.save(new User("Eduardo","test", "eduardo@email.com", (long)27, "USER"));
-        userRepository.save(new User("Rafaela", "test","rafaela@email.com", (long)21, "USER"));
-        userRepository.save(new User("Luisa", "test", "luisa@email.com", (long)50, "USER"));
-        userRepository.save(new User("Luis","test", "luis@email.com", (long)55, "USER"));
+        userRepository.save(new User("DiogoS", "test23", "diogo@email.com", (long)26, "ADMIN"));
+        userRepository.save(new User("Eduardo","test23", "eduardo@email.com", (long)27, "USER"));
+        userRepository.save(new User("Rafaela", "test23","rafaela@email.com", (long)21, "USER"));
+        userRepository.save(new User("Luisa", "test23", "luisa@email.com", (long)50, "USER"));
+        userRepository.save(new User("Luis","test23", "luis@email.com", (long)55, "USER"));
     }
 
     @PostMapping("/user/create")
@@ -78,5 +83,7 @@ public class UserController {
     public void deleteById (@PathVariable Long id) {
         userRepository.deleteById(id);
     }
+
+
 
 }

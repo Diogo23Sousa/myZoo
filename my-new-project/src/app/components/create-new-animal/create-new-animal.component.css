@@ -52,3 +52,34 @@
     color:white;
 }
 
+.formForAnimalName {
+    width: 38%;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 3%;
+}
+
+.formForSpecie {
+    width: 38%;
+    float: left;
+    margin-right: 2%; 
+    margin-bottom: 3%;   
+}
+
+.formForAge {
+    width: 20%;
+    float: left;
+    margin-bottom: 3%;
+}
+
+.inputForDescription {
+  width: 100%;
+  vertical-align: center;
+}
+
+.inputForImage {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 2%;
+}
+

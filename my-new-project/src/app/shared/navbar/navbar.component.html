@@ -9,16 +9,21 @@
           <a class="nav-link" routerLink="/createanimals">Create Animal <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/animals">Our Animals</a>
+          <a class="nav-link" *ngIf="isUserAdmin" routerLink="/animals">Our Animals</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"  routerLink="/ourusers">Our Users</a>
+            <a class="nav-link" *ngIf="isUserAdmin" routerLink="/users">Our Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/zoo">Our Zoo</a>
           </li>
       </ul>
+      <div class="adminDiv" *ngIf="isUserAdmin">[ADMIN LOGIN]</div>
+      <div class="welcomeDiv" *ngIf="userIsLoggedIn"> Welcome {{username}}. </div>
       <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-success my-2 my-sm-0" routerLink="/createuser">Sign Up</button>
+          <button class="btn btn-success my-2 my-sm-0" *ngIf="!userIsLoggedIn" routerLink="/createuser">Sign Up</button>
         <button class="btn btn-primary my-2 my-sm-0" *ngIf="!userIsLoggedIn" routerLink="/login">Log In</button>
-        <button class="btn btn-primary my-2 my-sm-0" *ngIf="userIsLoggedIn" (click)="logOut()" routerLink="/">Log Out</button>
+        <button class="btn btn-danger my-2 my-sm-0" *ngIf="userIsLoggedIn" (click)="logOut()" routerLink="/">Log Out</button>
       </form>
     </div>
   </nav>
