@@ -1,6 +1,6 @@
 .welcomeDiv {
     color: white;
-    margin-right: 2%;
+    margin-right: 1%;
     font-weight: 700;
 }
 
@@ -8,4 +8,9 @@
     color: red;
     font-weight: bold;
     margin-right: 1%;
+}
+
+.myButtonStyle {
+    border-radius: 5%;
+    margin-right: 3px;
 }

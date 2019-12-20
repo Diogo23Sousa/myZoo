@@ -19,6 +19,7 @@ import { AuthenticationService } from './security-services/authentication.servic
 import { AuthGuard } from './security-services/auth-guard.service';
 import { AuthHttpInterceptorService } from './security-services/auth-http-interceptor.service';
 import { OurZooComponent } from './components/our-zoo/our-zoo.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OurZooComponent } from './components/our-zoo/our-zoo.component';
     OurUsersComponent,
     UserLoginComponent,
     CreateNewUserComponent,
-    OurZooComponent
+    OurZooComponent,
+    MyAccountComponent
      
   ],
   imports: [

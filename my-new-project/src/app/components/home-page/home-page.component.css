@@ -1,31 +1,56 @@
-h1 {
-    margin-top: 15%;
+body {
     text-align: center;
     color: rgb(255, 255, 255);
-    font-size: 50px;
     font-weight: bolder;
-}
-
-body {
-    padding: 20%;
-    width:100%;
+    width: 100%;
     background-image: url("../../../../myimages/zoo.jpg");
-    background-size:cover;
+    background-size: cover;
 }
 
-.buttonStyle {
-        width: 30%;
-        border-radius: 1rem;
-        padding: 1.5%;
+@media only screen and (min-width: 900px) {
+    body {
+        font-size: 3rem;
+        min-height: 750px;
+    }
+
+    .buttonStyle { 
+        text-align: center;
+        margin:auto;
+        margin-right: 1%;
+        border-radius: 5%;
         border: none;
         cursor: pointer;
         font-weight: 600;
         color: #fff;
-        margin: 1%;
+        display: inline-flex;
+        padding: 1%;
+}
+}
+
+@media only screen and (max-width: 900px) {
+    body {
+        font-size: 2rem; 
+        height: 800px;
+        background-size: cover;
+    }
+
+    .buttonStyle {
+        border-radius: 5%;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        color: #fff;
+        margin-top: 5%;
+        width: 300px;
+}
 }
 
 .modalStyle {
     font-size: 20px;
     text-align: left;
     color: black;
+}
+
+.myMainDivStyle {
+    padding: 5%;
 }

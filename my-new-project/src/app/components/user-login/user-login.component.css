@@ -3,13 +3,24 @@
     margin-bottom: 5%;
 }
 
-.login-form-2{
-    margin-right: 25%;
-    margin-left: 25%;
-    padding: 1%;
-    background: #000000ce;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+@media only screen and (max-width: 900px) {
+    .login-form-2{
+        padding: 1%;
+        background: #000000ce;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    }
 }
+
+@media only screen and (min-width: 900px) {
+    .login-form-2{
+        margin-right: 25%;
+        margin-left: 25%;
+        padding: 1%;
+        background: #000000ce;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
 .login-form-2 h3{
     text-align: center;
     color: #fff;

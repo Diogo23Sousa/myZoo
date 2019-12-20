@@ -1,6 +1,6 @@
 <div class="alert alert-success" [style.display]='userCreatedSucess'>
-        <strong> New user was added!</strong> Check your family <a routerLink="/ourusers" class="alert-link">here</a>.
-    </div>
+    <strong> New user was created!</strong>
+</div>
 <div class="container login-container">
             <div class="login-form-1">
                 <h3>Sign Up</h3>
@@ -29,7 +29,7 @@
                             <input type="password" class="form-control" placeholder="Re-enter your Password *" [(ngModel)]="rePassword" name="rePassword" />
                     </div>
                     <div class="missingFields" [style.display]='missingParameters'>Missing One or More Fields.</div>
-                    <div class="missingFields" [style.display]='missingParametersPassword'>Password must have atlease 6 characters.</div>
+                    <div class="missingFields" [style.display]='missingParametersPassword'>Password must have atleast 6 characters.</div>
                     <div class="missingFields" [style.display]='missingMatchParametersPassword'>Password must match.</div>
                     <button class="btnSubmit" (click)="createNewUser()">Sign Up</button>
                 </form>

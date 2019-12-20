@@ -12,7 +12,23 @@ section .section-title {
     border: none;
     background: rgba(230, 230, 230, 0.356);
     border-radius: 3%;
-    width: 2;
+}
+
+
+.frontside .card,
+.backside .card {
+    height: 300px;
+}
+
+.frontside .card .card-body img {
+    max-height: 190px;
+    border-radius: 2%;
+}
+
+.frontside .card .card-title,
+.backside .card .card-title {
+    color: #333333 !important;
+    text-align: center;
 }
 
 .image-flip:hover .backside,
@@ -85,22 +101,4 @@ section .section-title {
     -ms-transform-style: preserve-3d;
     transition: 1s;
     transform-style: preserve-3d;
-}
-
-.frontside .card,
-.backside .card {
-    height: 250px;
-    width: 360px;
-}
-
-.frontside .card .card-title,
-.backside .card .card-title {
-    color: #333333 !important;
-    text-align: center;
-}
-
-.frontside .card .card-body img {
-    max-width: 340px;
-    height: 150px;
-    border-radius: 2%;
 }

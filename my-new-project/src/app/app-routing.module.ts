@@ -8,6 +8,7 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 import { CreateNewUserComponent } from './components/create-new-user/create-new-user.component';
 import { AuthGuard } from './security-services/auth-guard.service';
 import { OurZooComponent } from './components/our-zoo/our-zoo.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'users', canActivate:[AuthGuard], component: OurUsersComponent},
   { path: 'login', component: UserLoginComponent},
   { path: 'createuser', component: CreateNewUserComponent},
-  { path: 'zoo', component: OurZooComponent}
+  { path: 'zoo', component: OurZooComponent},
+  { path: 'myaccount', component: MyAccountComponent}
 ];
 
 @NgModule({

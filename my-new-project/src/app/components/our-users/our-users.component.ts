@@ -5,8 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-our-users',
   templateUrl: './our-users.component.html',
-  styleUrls: ['./our-users.component.css'],
-  providers: [UserService]
+  styleUrls: ['./our-users.component.css']
 })
 @Injectable()
 export class OurUsersComponent implements OnInit {
@@ -20,8 +19,7 @@ export class OurUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllUsers();
-    
+    this.getAllUsers(); 
   }
 
   generateNewUsers () {

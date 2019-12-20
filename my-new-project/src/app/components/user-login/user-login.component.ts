@@ -12,43 +12,30 @@ import { AuthenticationService } from 'src/app/security-services/authentication.
 
 @Injectable()
 export class UserLoginComponent implements OnInit {
-userNameLogin: String = "";
-passwordLogin: String = "";
+userNameLogin: String;
+passwordLogin: String;
 validLogin: String = 'none';
 invalidLogin: String = 'none';
 
-  constructor(private authenticationService : AuthenticationService) {
-   }
+constructor(private authenticationService : AuthenticationService) {
+}
 
   ngOnInit() {
   }
 
   logIn() {
-    if (this.userNameLogin == "" || this.passwordLogin == "") {
-      this.validLogin = 'none';
-      this.invalidLogin = '';
-    }
-    else {
-      this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(userData => {
-          console.log("Login was sucessfull: " + userData);
-          this.validLogin = '';
-          this.invalidLogin = 'none';
-          location.href="/";
-      })
-    }
-    // else if (this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(x => console.log(x)) === null){
-    //   this.validLogin = 'none';
-    //   this.invalidLogin = '';
-    //   this.missingParameters = 'none';
-    // }
-    // else {
-    //   this.validLogin = '';
-    //   this.invalidLogin = 'none';
-    //   this.missingParameters = 'none';
-    //   this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(userData => {
-    //     console.log("Login was sucessfull: " + userData);
-    //   location.href = "/";
-    // });
-    // }
+      this.authenticationService.authenticate(this.userNameLogin, this.passwordLogin).subscribe(userLogin => {
+        console.log(userLogin);
+      if (sessionStorage.getItem('username') !== null && sessionStorage.getItem('token') !== null) {
+        this.validLogin = '';
+        this.invalidLogin = 'none';
+        location.href = '/';
+      }});
+      if ((sessionStorage.getItem('username') === null && sessionStorage.getItem('token') === null)) {
+        this.validLogin = 'none';
+        this.invalidLogin = '';
+        this.passwordLogin = null;
+        window.scrollTo(0, 0);
+      }
   }
 }

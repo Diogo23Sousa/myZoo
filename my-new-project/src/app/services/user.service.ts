@@ -13,7 +13,7 @@ export class UserService {
 private userUrl: string;
  
   constructor(private httpClient: HttpClient) {
-    this.userUrl =  'http://localhost:8080/user';
+    this.userUrl = 'http://localhost:8080/user';
   }
  
   public findAll() {

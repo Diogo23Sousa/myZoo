@@ -1,21 +1,24 @@
 <body>
-        <h1>
-          <div *ngIf="!userIsLoggedIn"> Welcome to the Zoo! </div>
-          <div *ngIf="userIsLoggedIn"> Welcome {{username}} !</div>
-        <button class="btn btn-info buttonStyle" *ngIf="userIsLoggedIn" routerLink="/animals">CHECK OUR ANIMALS</button>
+<div class="myMainDivStyle">
+  <div *ngIf="!userIsLoggedIn"> Welcome to the Zoo! </div>
+          <div *ngIf="userIsLoggedIn"> Welcome {{username}}!</div>
         <button class="btn btn-success buttonStyle" *ngIf="!userIsLoggedIn" routerLink="/createuser">CREATE ACCOUNT</button>
+        <button class="btn btn-success buttonStyle" *ngIf="userIsLoggedIn" routerLink="/myaccount">MY ACCOUNT</button>
+        <button class="btn btn-info buttonStyle" routerLink="/zoo">OUR ANIMALS</button>
         <button type="button" class="btn btn-primary buttonStyle" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">HELP ME</button>
-<div class="modal fade modalStyle" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Help menu</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
+</div>
+        <!-- THIS IS MY MODAL THAT IS TOOGLED WHEN I PRESS HELP BUTTON -->
+        <div class="modal fade modalStyle" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Help menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+          <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Email:</label>
             <input type="text" class="form-control" id="recipient-name">
@@ -27,13 +30,12 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Send message</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-sucess">Send Message</button>
       </div>
     </div>
   </div>
 </div>
-    </h1>
 </body>
   
 
