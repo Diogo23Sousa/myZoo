@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -39,7 +40,7 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.age = age;
-        this.role = role;
+        this.role = "USER";
     }
 
     public User(Long id, String name, String password, String email, Long age, String role) {
@@ -48,7 +49,7 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.age = age;
-        this.role = role;
+        this.role = "USER";
     }
 
     public Long getId() {

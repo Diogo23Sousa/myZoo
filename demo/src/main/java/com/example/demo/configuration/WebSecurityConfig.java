@@ -64,7 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF (Cross-site request forgery)
 		httpSecurity.csrf().disable()
 				// The routes I want to allow my user to use without LOGIN (Create User and check Name and Email Availability)
-				.authorizeRequests().antMatchers("/user/create", "/user/getbyname/**", "/user/getbyemail/**", "/animal/getall").permitAll().and()
+				.authorizeRequests().antMatchers("/user/create", "/user/getbyname/**", "/user/getbyemail/**",
+				"/animal/getall", "/animal/getbynumber/**", "/animal/getbyletter/**", "/animal/getspeciebyletter/**", "/animal/getbyuserletter/**" ).permitAll().and()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
 				.permitAll().

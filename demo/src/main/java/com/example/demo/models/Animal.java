@@ -16,29 +16,34 @@ public class Animal implements Serializable {
     private String animalSpecie;
     private Long animalAge;
     private String animalImage;
-
+    private Long animalPrice;
+    private String animalCreatedBy;
     @Column(columnDefinition = "nvarchar(4000)")
     private String animalDescription;
 
     public Animal() {
     }
 
-    public Animal(String animalName, String animalSpecie, Long animalAge, String animalImage, String animalDescription) {
+    public Animal(String animalName, String animalSpecie, Long animalAge, String animalImage, Long animalPrice, String animalCreatedBy, String animalDescription) {
         this.animalName = animalName;
         this.animalSpecie = animalSpecie;
         this.animalAge = animalAge;
         this.animalImage = animalImage;
+        this.animalCreatedBy = animalCreatedBy;
+        this.animalPrice = animalPrice;
         this.animalDescription = animalDescription;
+
     }
 
-    public Animal(Long id, String animalName, String animalSpecie, Long animalAge, String animalImage, String animalDescription) {
+    public Animal(Long id, String animalName, String animalSpecie, Long animalAge, String animalImage, Long animalPrice, String animalCreatedBy, String animalDescription) {
         this.id = id;
         this.animalName = animalName;
         this.animalSpecie = animalSpecie;
         this.animalAge = animalAge;
         this.animalImage = animalImage;
+        this.animalCreatedBy = animalCreatedBy;
+        this.animalPrice = animalPrice;
         this.animalDescription = animalDescription;
-
     }
 
     public Long getId() {
@@ -80,4 +85,12 @@ public class Animal implements Serializable {
     public String getAnimalDescription() {return animalDescription;}
 
     public void setAnimalDescription(String animalDescription) {this.animalDescription = animalDescription;}
+
+    public Long getAnimalPrice() {return animalPrice;}
+
+    public void setAnimalPrice(Long animalPrice) {this.animalPrice = animalPrice;}
+
+    public String getAnimalCreatedBy() {return animalCreatedBy;}
+
+    public void setAnimalCreatedBy(String animalCreatedBy) {this.animalCreatedBy = animalCreatedBy;}
 }

@@ -4,7 +4,6 @@ import com.example.demo.models.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +35,11 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query(value = "SELECT * FROM animal WHERE animal.animal_age LIKE %:number% ", nativeQuery = true)
     Optional<List<Animal>> findByContainsNumber (Long number);
 
+    // Getting all animals created by the given user
+    @Query(value = "SELECT * FROM animal WHERE animal.animal_created_by LIKE :username", nativeQuery = true)
+    Optional<List<Animal>> findAllByUser (String username);
 
+    // Getting my animals by containing this char or words in specie
+    @Query(value = "SELECT * FROM animal WHERE animal.animal_created_by LIKE %:usernameletter% ", nativeQuery = true)
+    Optional<List<Animal>> findByUserContainsLetter (String usernameletter);
 }

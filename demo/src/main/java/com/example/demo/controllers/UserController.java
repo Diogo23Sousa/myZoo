@@ -74,6 +74,16 @@ public class UserController {
         userRepository.save(newUser);
     }
 
+    @PutMapping("/user/update/{name}")
+    public void updateUser(@RequestBody User userToUpdate, @PathVariable String name){
+        User updatedUser = userRepository.findByName(name).get().get(0);
+        updatedUser.setName(userToUpdate.getName());
+        updatedUser.setEmail(userToUpdate.getEmail());
+        updatedUser.setPassword(userToUpdate.getPassword());
+        updatedUser.setAge(userToUpdate.getAge());
+        userRepository.saveAndFlush(updatedUser);
+    }
+
     @DeleteMapping("/user/deleteall")
     public void deleteAll () {
         userRepository.deleteAll();
@@ -83,7 +93,4 @@ public class UserController {
     public void deleteById (@PathVariable Long id) {
         userRepository.deleteById(id);
     }
-
-
-
 }
