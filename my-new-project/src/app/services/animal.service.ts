@@ -33,24 +33,32 @@ private animalUrl: string;
     return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyname/' + name)); 
   }
 
+  public findByLetter (letter: String) {
+    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyletter/' + letter));
+  }
+
   public findBySpecie(name: String) {
     return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyspecie/' + name)); 
+  }
+  
+  public findSpecieByLetter (letter: String) {
+    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getspeciebyletter/' + letter));
   }
 
   public findByAge(age: String) {
     return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyage/' + age)); 
   }
 
-  public findByLetter (letter: String) {
-    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyletter/' + letter));
-  }
-
-  public findSpecieByLetter (letter: String) {
-    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getspeciebyletter/' + letter));
-  }
-
   public findAgeByNumber (number: String) {
     return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbynumber/' + number));
+  }
+
+  public findByUser(username: String) {
+    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyuser/' + username)); 
+  }
+  
+  public findByUserLetter(letter: String) {
+    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyuserletter/' + letter)); 
   }
 
   public deleteById (number: Number) {

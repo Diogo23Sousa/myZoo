@@ -12,18 +12,27 @@ userName: String;
 email: String;
 password: String;
 age: Number;
+
 missingParameters: String = 'none';
 missingParametersPassword: String = 'none';
+
 nameUnavailable: String = 'none';
 nameAvailable: String = 'none';
+ageIsNaN: String = 'none';
+emailAvailable: String = 'none';
 emailUnavailable: String = 'none';
+emailFormatIsInvalid: String = 'none';
+
 userUpdatedSucess: String = 'none';
-booleanUsernameAvailable: boolean = true;
-booleanEmailAvailable: boolean = true;
+userUpdatedUnsucess :String = 'none';
 
-  constructor(private userService: UserService) { }
+booleanUsernameAvailable: boolean = false;
+booleanEmailAvailable: boolean = false;
 
-  ngOnInit() {
+constructor(private userService: UserService) { }
+
+ngOnInit() {
+    // With the UNIQUE username of the TOKEN we get the info of the account
     this.userService.findByName(sessionStorage.getItem('username')).
     subscribe(myAccountInfo => {
       let myAccount = myAccountInfo[0];
@@ -35,30 +44,59 @@ booleanEmailAvailable: boolean = true;
 }
 
 updateMyAccount() {
+  console.log("THIS IS THE VALUE OF MY BEFORE AFTER:" + this.email);
+  // Performs a validation before making any request sending helping messages to the user
     this.ngModelValidation();
-    if (this.userName != null && this.email != null && this.age != null && this.password != null && this.booleanEmailAvailable === true && this.booleanUsernameAvailable === true){
-        console.log("SERVICE SUCESS");
+  // After Validation, if the user meets the required parameters the userInfo will be updated
+    if (this.userName != null && this.email != null && this.age != null && this.password != null && this.booleanUsernameAvailable === this.booleanEmailAvailable === true){
         const user = new User (this.userName, this.password, this.email, this.age, "USER");
-        this.userService.newUser(user).subscribe(x => console.log(x));
+        this.userService.updateUser(user, sessionStorage.getItem('username')).subscribe(updateUser => console.log(updateUser));
+        this.emailFormatIsInvalid = 'none';
+        this.ageIsNaN = 'none';
         this.missingParameters = 'none';
         this.missingParametersPassword = 'none';
         this.userUpdatedSucess = '';
+        this.userUpdatedUnsucess = 'none';
+        location.href = "/myaccount";
+      }
+      else {
+        this.userUpdatedSucess = 'none';
+        this.userUpdatedUnsucess = '';
         window.scrollTo(0, 0);
       }
 }
 
 // This is a method that validates all the inputs needed for createNewUser()
 ngModelValidation() {
-  if (this.userName === '') {this.userName = null; }
-  if (this.email === '') { this.email = null; }
-  // if (isNaN(this.age)) { this.age = null; }
-  if (this.password === '') {this.password = null; }
+  if (this.userName === '') {
+    this.userName = null;
+  }
+  if (this.email === '' || this.email === null || this.email.length < 5) {
+    this.emailFormatIsInvalid = '';
+    this.email = null;
+  }
+  if (isNaN( + this.age)) {
+    this.ageIsNaN = '';
+    this.age = null;
+  }
+  if (this.password === '' || this.password.length < 6) {
+    this.missingParametersPassword = '';
+    this.password = null;
+  }
   if (this.userName === null || this.email === null || this.password === null ||
       this.age === null || this.password === null) {
       this.missingParameters = ''; }
-  if (this.password.length < 6) {
-        this.password = null;
+ 
+  // VALIDATES THE USERNAME AVAILABILITY
+  if (this.booleanUsernameAvailable === false && this.userName === sessionStorage.getItem('username')) {
+    this.booleanUsernameAvailable = true;
+  }
+    // VALIDATES THE EMAIL AVAILABILITY
+  this.userService.findByEmail(this.email).subscribe(checkEmail => {
+    if (checkEmail[0].name === sessionStorage.getItem('username')){
+      this.booleanEmailAvailable = true;
     }
+  })
   }
 
   // Checks if the name given is already present in the database || Name is an UNIQUE DB FIELD
@@ -88,10 +126,12 @@ checkExistingEmail() {
     this.email = null;
   }
   this.userService.findByEmail(this.email).subscribe(emailInput => {
-  if (emailInput !== null) {
+  if (emailInput !== null ) {
+    this.emailAvailable = 'none'
     this.emailUnavailable = '';
     this.booleanEmailAvailable = false;
   } else { 
+    this.emailAvailable = '';
     this.emailUnavailable = 'none';
     this.booleanEmailAvailable = true;
   }

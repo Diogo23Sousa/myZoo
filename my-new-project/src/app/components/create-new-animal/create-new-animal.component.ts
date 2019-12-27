@@ -13,6 +13,7 @@ animalName: String;
 animalSpecie: String;
 animalAge: number;
 animalImage: String;
+animalPrice: number;
 animalDescription: String;
 missingParameters : String = 'none';
 missingNumberParameters: String = 'none';
@@ -36,6 +37,13 @@ animalCreatedSucess: String = 'none';
     }
     // If the user doesn't provide a Number for the animalAge Parameter (this.missingNumberParameters => show())
     if (isNaN(this.animalAge)) {
+      this.animalAge = null;
+      this.missingNumberParameters = '';
+      this.animalCreatedSucess = 'none';
+    }
+     // If the user doesn't provide a Number for the animalPrice Parameter (this.missingNumberParameters => show())
+     if (isNaN(this.animalPrice)) {
+      this.animalPrice = null;
       this.missingNumberParameters = '';
       this.animalCreatedSucess = 'none';
     }
@@ -51,11 +59,13 @@ animalCreatedSucess: String = 'none';
   createNewAnimal() {
     this.ngModelValidation();
     // If the User provides the correct parameters then a New Animal is created.
-    if (this.animalName != null && this.animalSpecie != null && !isNaN(this.animalAge)){
-      this.animalService.newAnimal(new Animal(this.animalName, this.animalSpecie, this.animalAge, this.animalImage, this.animalDescription))
+    if (this.animalName != null && this.animalSpecie != null && !isNaN(this.animalAge) && !isNaN(this.animalPrice) && this.animalAge !== null && this.animalPrice !== null){
+      this.animalService.newAnimal(new Animal(this.animalName, this.animalSpecie, this.animalAge, this.animalImage, this.animalPrice, sessionStorage.getItem('username'), this.animalDescription))
       .subscribe(x => console.log(x));
       this.missingNumberParameters = this.missingParameters = 'none';
       this.animalCreatedSucess = '';
+      window.scrollTo(0, 0);
+
     }
   }
   }

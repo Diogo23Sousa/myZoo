@@ -9,6 +9,8 @@
             <th scope="col">Animal Name</th>
             <th scope="col">Specie</th>
             <th scope="col">Age</th>
+            <th scope="col">Price</th>
+            <th scope="col">Owner</th>
           </tr>
         </thead>
         <tbody>
@@ -17,12 +19,23 @@
                     <td> <input type="text" class="myInputStyle" [(ngModel)]="nameInput" name="nameInput"(ngModelChange)="getAnimalByLetter(nameInput)"> </td>
                     <td> <input type="text" class="myInputStyle" [(ngModel)]="specieInput" (ngModelChange)="getAnimalBySpecieLetter()"> </td>
                     <td> <input type="text" class="myInputStyle" [(ngModel)]="ageInput" (ngModelChange)="getAnimalByAgeNumber()"> </td>
+                    <td> <div class="form-group">
+                          <select class="form-control" [(ngModel)]="priceInput" (ngModelChange)="organizeAnimalPrices()">
+                          <option value="" selected="selected">None</option>
+                          <option value="ascending">Lowest to Highest</option>
+                          <option value="descending">Highest to Lowest</option>
+                          </select>
+                        </div>
+                    </td>        
+                    <td> <input type="text" class="myInputStyle" [(ngModel)]="userInput" (ngModelChange)="getAnimalByUserLetter()"> </td>
                       </tr>
           <tr *ngFor="let animal of animals">
             <td> <button class="btn btn-sm btn-danger" (click)="deleteAnimalById(animal.id)">x</button></td>
             <td>{{animal.animalName}}</td>
             <td>{{animal.animalSpecie}}</td>
             <td>{{animal.animalAge}}</td>
+            <td>{{animal.animalPrice}}</td>
+            <td>{{animal.animalCreatedBy}}</td>
           </tr>
         </tbody>
       </table>

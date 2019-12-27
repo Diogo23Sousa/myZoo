@@ -8,18 +8,21 @@
         <form>
             <div class="form-group">
                 <div class="formForAnimalName">             
-                    <label for="userName">Animal Name:*</label>
+                    <label for="animalName">Animal Name:*</label>
                     <input type="text" maxlength="25" class="form-control" placeholder="e.g. Furiosa" [(ngModel)]="animalName" name="animalName"/>
                 </div>
-
                 <div class="formForSpecie">  
-                    <label for="userName">Specie:*</label>
+                    <label for="animalSpecie">Specie:*</label>
                     <input type="text" maxlength="25" class="form-control" placeholder="e.g. Cheetah" [(ngModel)]="animalSpecie" name="animalSpecie" />
                 </div>
 
                 <div class="formForAge"> 
-                    <label for="userName">Age:*</label>
+                    <label for="animalAge">Age:*</label>
                     <input type="text" maxlength="3" class="form-control" placeholder="e.g. 23" [(ngModel)]="animalAge" name="animalAge"/>
+                </div> 
+                <div class="formForPrice"> 
+                    <label for="animalPrice">Price:*</label>
+                    <input type="text" maxlength="9" class="form-control" placeholder="e.g. 230€" [(ngModel)]="animalPrice" name="animalPrice"/>
                 </div> 
             </div>
 
@@ -41,7 +44,7 @@
             
             <!-- This is the messages that appear when the NgModelValidation() is performed -->
             <div class="alert alert-danger missingFields" [style.display]='missingParameters'>Missing One or More Fields.</div>
-            <div class="alert alert-danger missingFields" [style.display]='missingNumberParameters'>Animal Age must be a Number.</div>
+            <div class="alert alert-danger missingFields" [style.display]='missingNumberParameters'>Age and Price must be a Numbers.</div>
             <button class="btnSubmit" (click)="createNewAnimal()">Create</button>
         </form>
 </div>

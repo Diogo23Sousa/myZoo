@@ -1,30 +1,8 @@
 <section id="team">
     <div class="container">
-<!-- SEARCH FORM -->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
 
-                <select [(ngModel)]="searchFilter" (ngModelChange)="searchTextInputUsingFilter()">
-                    <option value="animalName">Animal Name</option>
-                    <option value="animalSpecie">Animal Specie</option>
-                    <option value="animalAge">Animal Age</option>
-                    <option value="animalSeller">Seller</option>
-                    <hr>
-            
-                </select>
-            </div>
-            <input type="search" placeholder="Enter your text here" class="form-control col-9" [(ngModel)]="searchTextInput" (ngModelChange)="searchTextInputUsingFilter()" aria-label="Text input with dropdown button">
-            <div class="input-group-append">
-                <button class="btn btn-outline-success searchButtonResize" type="button" (click)="getAnimalsByAscendingPrice()"><i class="material-icons md-18">
-                    keyboard_arrow_up
-                    </i></button>
-                <button class="btn btn-outline-danger searchButtonResize" type="button" (click)="getAnimalsByDescendingPrice()"><i class="material-icons md-18">
-                    keyboard_arrow_down
-                    </i></button>
-              </div>
-          </div>
-<!-- Animal Card -->
-         <div class="row">
+        <div class="row">
+            <!-- Animal Card -->
             <div *ngFor="let animal of animals" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                     <div class="mainflip">

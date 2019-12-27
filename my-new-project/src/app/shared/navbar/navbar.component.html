@@ -22,6 +22,7 @@
       <div class="welcomeDiv" *ngIf="userIsLoggedIn"> Welcome {{username}}. </div>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-success myButtonStyle" *ngIf="!userIsLoggedIn" routerLink="/createuser">Sign Up</button>
+        <button class="btn btn-success myButtonStyle" *ngIf="userIsLoggedIn" routerLink="/myanimals">My Animals</button>
         <button class="btn btn-primary myButtonStyle" *ngIf="userIsLoggedIn" routerLink="/myaccount">My Account</button>
         <button class="btn btn-primary myButtonStyle" *ngIf="!userIsLoggedIn" routerLink="/login">Log In</button>
         <button class="btn btn-danger myButtonStyle" *ngIf="userIsLoggedIn" (click)="logOut()" routerLink="/">Log Out</button>

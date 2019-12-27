@@ -9,6 +9,7 @@ import { CreateNewUserComponent } from './components/create-new-user/create-new-
 import { AuthGuard } from './security-services/auth-guard.service';
 import { OurZooComponent } from './components/our-zoo/our-zoo.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { MyAnimalsComponent } from './components/my-animals/my-animals.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent},
   { path: 'createuser', component: CreateNewUserComponent},
   { path: 'zoo', component: OurZooComponent},
-  { path: 'myaccount', component: MyAccountComponent}
+  { path: 'myaccount', component: MyAccountComponent},
+  { path: 'myanimals', component: MyAnimalsComponent}
 ];
 
 @NgModule({

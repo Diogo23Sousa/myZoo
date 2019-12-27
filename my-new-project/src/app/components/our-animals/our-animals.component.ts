@@ -14,6 +14,8 @@ export class OurAnimalsComponent implements OnInit {
   nameInput: String;
   specieInput: String;
   ageInput: String;
+  userInput: String;
+  priceInput: String;
 
   constructor(private animalService: AnimalService) {
   }
@@ -21,11 +23,6 @@ export class OurAnimalsComponent implements OnInit {
   ngOnInit() {
     this.getAllAnimals();
     
-  }
-
-  generateNewAnimals () {
-      this.animalService.generateAnimals('any').subscribe(x => console.log(x));
-      location.reload();
   }
 
   getAllAnimals () {
@@ -39,7 +36,7 @@ export class OurAnimalsComponent implements OnInit {
     })
   }
   getAnimalByLetter () {
-    this.specieInput = this.ageInput = '';
+    this.specieInput = this.ageInput =  this.userInput = this.priceInput = '';
     if (this.nameInput == '') {this.getAllAnimals()}
     else {
       this.animalService.findByLetter(this.nameInput).subscribe(animalsWithLetter => {
@@ -49,7 +46,7 @@ export class OurAnimalsComponent implements OnInit {
   }
 
   getAnimalBySpecieLetter () {
-    this.nameInput = this.ageInput = '';
+    this.nameInput = this.ageInput =  this.userInput = this.priceInput = '';
     if (this.specieInput == '') {this.getAllAnimals()}
     else {
       this.animalService.findSpecieByLetter(this.specieInput).subscribe(speciesWithLetter => {
@@ -59,7 +56,7 @@ export class OurAnimalsComponent implements OnInit {
   }
 
   getAnimalByAgeNumber () {
-    this.nameInput = this.specieInput = '';
+    this.nameInput = this.specieInput = this.userInput = this.priceInput = '';
     if (this.ageInput == '') {this.getAllAnimals()}
     else {
       this.animalService.findAgeByNumber(this.ageInput).subscribe(ageWithNumber => {
@@ -67,6 +64,25 @@ export class OurAnimalsComponent implements OnInit {
       })
     }
   }
+
+  getAnimalByUserLetter () {
+    this.nameInput = this.specieInput = this.ageInput = this.priceInput = '';
+    if (this.userInput == '') {this.getAllAnimals()}
+    else {
+      this.animalService.findByUserLetter(this.userInput).subscribe(animalsOfTheUser => {
+        this.animals = animalsOfTheUser;
+      })
+    }
+  }
+
+  organizeAnimalPrices() {
+    this.nameInput = this.specieInput = this.ageInput = this.userInput = '';
+    if (this.priceInput === 'ascending') {
+        this.animals.sort((a,b) => a.animalPrice - b.animalPrice);
+      } else if (this.priceInput === 'descending') {      
+      this.animals.sort((a,b) => b.animalPrice - a.animalPrice);
+  } else {this.getAllAnimals()}  
+}
 
   deleteAnimalById (number: Number) {
     this.animalService.deleteById(number).subscribe(x => console.log(x));
@@ -78,8 +94,13 @@ export class OurAnimalsComponent implements OnInit {
     location.reload();
   }
 
+  generateNewAnimals () {
+    this.animalService.generateAnimals('any').subscribe(x => console.log(x));
+    location.reload();
+}
+
   clearAnimalFilter () {
-    this.nameInput = this.specieInput = this.ageInput = '';
+    this.nameInput = this.specieInput = this.ageInput = this.userInput =  '';
     this.getAllAnimals();
   }
 }

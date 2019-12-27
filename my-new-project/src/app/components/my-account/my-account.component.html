@@ -1,6 +1,9 @@
 <div class="alert alert-success" [style.display]='userUpdatedSucess'>
     <strong> Your account was updated!</strong>
 </div>
+<div class="alert alert-danger" [style.display]='userUpdatedUnsucess'>
+    <strong> Update was unsucessful.</strong>
+</div>
 
 <div class="container login-container">
             <div class="login-form-1">
@@ -8,25 +11,28 @@
                 <form>
                     <div class="form-group">
                         <label for="userName">Username:</label>
-                        <input type="text" class="form-control" [(ngModel)]="userName" (ngModelChange)="checkExistingUser()" name="userName"/>
+                        <input type="text" disabled class="form-control" [(ngModel)]="userName" (ngModelChange)="checkExistingUser()" name="userName"/>
                         <div class="missingFieldsGreen" [style.display]='nameAvailable'>Username is available.</div>
                         <div class="missingFields" [style.display]='nameUnavailable'>Username is unavailable.</div>
                     </div>
                     <div class="form-group">
                             <label for="userName">Email:</label>
-                        <input type="text" class="form-control" [(ngModel)]="email" (ngModelChange)="checkExistingEmail()" name="email" />
+                        <input type="text" maxlength="49" class="form-control" [(ngModel)]="email" (ngModelChange)="checkExistingEmail()" name="email" />
+                        <div class="missingFieldsGreen" [style.display]='emailAvailable'>Email is available.</div>
                         <div class="missingFields" [style.display]='emailUnavailable'>Email is already in use.</div>
+                        <div class="missingFields" [style.display]='emailFormatIsInvalid'>Email must be have atleast 5 chars.</div>
                     </div>
                     <div class="form-group">
                             <label for="userName">Age:</label>
-                            <input type="text" class="form-control" [(ngModel)]="age" name="age" />
+                            <input type="text" maxlength="3" class="form-control" [(ngModel)]="age" name="age" />
+                            <div class="missingFields" [style.display]='ageIsNaN'>Age must be a number.</div>
                         </div>
                     <div class="form-group">
                             <label for="userName">Password:</label>
-                        <input type="password" class="form-control" [(ngModel)]="password" name="password" />
+                        <input type="text" maxlength="49" class="form-control" [(ngModel)]="password" name="password" />
+                        <div class="missingFields" [style.display]='missingParametersPassword'>Password must have atleast 6 characters.</div>
                     </div>
                     <div class="missingFields" [style.display]='missingParameters'>Missing One or More Fields.</div>
-                    <div class="missingFields" [style.display]='missingParametersPassword'>Password must have atleast 6 characters.</div>
                     <button class="btnSubmit" (click)="updateMyAccount()">Update</button>
                 </form>
             </div>

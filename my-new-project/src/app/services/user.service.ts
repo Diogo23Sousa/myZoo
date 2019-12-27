@@ -22,7 +22,11 @@ private userUrl: string;
 
   public newUser (user: User) {
     return this.httpClient.post<User>(this.userUrl.concat('/create'), JSON.stringify(user), httpOptions);
-  } 
+  }
+
+  public updateUser (user: User, name: String) {
+    return this.httpClient.put<User>(this.userUrl.concat('/update/') + name, user);
+  }
 
   public generateUsers(body: String) {
     return this.httpClient.post(this.userUrl.concat('/generate') , body);

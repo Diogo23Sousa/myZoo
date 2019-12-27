@@ -20,9 +20,6 @@ section .section-title {
     justify-content: left;
 }
 
-.searchButtonResize {
-    height: 38px;
-}
 
 .frontside .card,
 .backside .card {
