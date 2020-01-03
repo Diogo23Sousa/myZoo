@@ -1,24 +1,26 @@
 <section id="team">
     <div class="container">
-
         <div class="row">
             <!-- Animal Card -->
-            <div *ngFor="let animal of animals" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let animal of animals" (click)="animalToBeUpdated(animal.id)">
                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
+                    <div class="mainflip" >
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">"{{ animal.animalName }}" ({{animal.animalAge}}) - {{animal.animalSpecie}}</h5>
                                     <p><img class="img-fluid" src={{animal.animalImage}}></p>
                                     <h6 class="card-title">Price: {{animal.animalPrice}}€ (Seller: {{animal.animalCreatedBy}})</h6>                
+                                    <h6 class="card-title" >(Click to edit)</h6>  
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <p class="card-text">{{animal.animalDescription}}</p>
+                                    <p class="card-text">
+                                        {{animal.animalDescription}}</p>
+                                        <br>
                                 </div>
                             </div>
                         </div>

@@ -93,7 +93,7 @@ createNewUser() {
   this.ngModelValidation();
   if (this.userName != null && this.email != null && this.age != null && this.password != null && this.booleanEmailAvailable === true && this.booleanUsernameAvailable === true){
       console.log("SERVICE SUCESS");
-      const user = new User (this.userName, this.password, this.email, this.age, "USER");
+      const user = new User (null, this.userName, this.password, this.email, this.age, "USER");
       this.userService.newUser(user).subscribe(x => console.log(x));
       this.missingParameters = 'none';
       this.missingParametersPassword = 'none';

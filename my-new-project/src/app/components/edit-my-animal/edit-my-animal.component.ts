@@ -1,14 +1,18 @@
-import { Component, OnInit, Input, Injectable, OnDestroy } from '@angular/core';
+import { Component, OnInit, Injectable, OnDestroy } from '@angular/core';
 import { AnimalService } from 'src/app/services/animal.service';
 import { Animal } from 'src/app/models/animal';
+import { Subscription } from 'rxjs';
+import { parse } from 'querystring';
+import { AnimalDataService } from 'src/app/services/animal-data.service';
 
 @Component({
-  selector: 'app-create-new-animal-component',
-  templateUrl: './create-new-animal.component.html',
-  styleUrls: ['./create-new-animal.component.css']
+  selector: 'app-edit-my-animal',
+  templateUrl: './edit-my-animal.component.html',
+  styleUrls: ['./edit-my-animal.component.css']
 })
+
 @Injectable()
-export class CreateNewAnimalComponent implements OnInit {
+export class EditMyAnimalComponent implements OnInit {
 animalName: String;
 animalSpecie: String;
 animalAge: number;
@@ -19,11 +23,20 @@ missingParameters : String = 'none';
 missingNumberParameters: String = 'none';
 animalCreatedSucess: String = 'none';
 
-  constructor(private animalService: AnimalService) {
+  constructor(private animalService: AnimalService, private animalDataService: AnimalDataService) {
   }
 
   ngOnInit() {
+    this.animalService.findById(this.animalDataService.getAnimalId()).subscribe(getAnimalById => {
+      this.animalName = getAnimalById.animalName;
+      this.animalSpecie = getAnimalById.animalSpecie;
+      this.animalAge = getAnimalById.animalAge;
+      this.animalDescription = getAnimalById.animalDescription;
+      this.animalPrice = getAnimalById.animalPrice;
+      this.animalImage = getAnimalById.animalImage;
+    })
   }
+  
 
   // This is a method that validates all the inputs needed for createNewAnimal()
   ngModelValidation () {
@@ -36,11 +49,11 @@ animalCreatedSucess: String = 'none';
       this.missingNumberParameters = this.animalCreatedSucess = 'none';
     }
     // If the user doesn't provide a Number for the animalAge Parameter (this.missingNumberParameters => show())
-    if (isNaN(this.animalAge)) {
-      this.animalAge = null;
-      this.missingNumberParameters = '';
-      this.animalCreatedSucess = 'none';
-    }
+    if (isNaN((this.animalAge))) {
+     this.animalAge = null;
+       this.missingNumberParameters = '';
+       this.animalCreatedSucess = 'none';
+     }
      // If the user doesn't provide a Number for the animalPrice Parameter (this.missingNumberParameters => show())
      if (isNaN(this.animalPrice)) {
       this.animalPrice = null;
@@ -56,11 +69,11 @@ animalCreatedSucess: String = 'none';
     }
   }
 
-  createNewAnimal() {
+  updateMyAnimal() {
     this.ngModelValidation();
     // If the User provides the correct parameters then a New Animal is created.
-    if (this.animalName != null && this.animalSpecie != null && !isNaN(this.animalAge) && !isNaN(this.animalPrice) && this.animalAge !== null && this.animalPrice !== null){
-      this.animalService.newAnimal(new Animal(null, this.animalName, this.animalSpecie, this.animalAge, this.animalImage, this.animalPrice, sessionStorage.getItem('username'), this.animalDescription))
+    if (this.animalName != null && this.animalSpecie != null && !isNaN(this.animalPrice) && this.animalAge !== null && this.animalPrice !== null){
+      this.animalService.newAnimal(new Animal(this.animalDataService.getAnimalId(), this.animalName, this.animalSpecie, this.animalAge, this.animalImage, this.animalPrice, sessionStorage.getItem('username'), this.animalDescription))
       .subscribe(x => console.log(x));
       this.missingNumberParameters = this.missingParameters = 'none';
       this.animalCreatedSucess = '';
@@ -69,3 +82,4 @@ animalCreatedSucess: String = 'none';
     }
   }
   }
+

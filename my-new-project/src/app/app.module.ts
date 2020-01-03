@@ -21,6 +21,9 @@ import { AuthHttpInterceptorService } from './security-services/auth-http-interc
 import { OurZooComponent } from './components/our-zoo/our-zoo.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { MyAnimalsComponent } from './components/my-animals/my-animals.component';
+import { EditMyAnimalComponent } from './components/edit-my-animal/edit-my-animal.component';
+import { AnimalDataService } from './services/animal-data.service';
+import { UserDataService } from './services/user-data.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { MyAnimalsComponent } from './components/my-animals/my-animals.component
     CreateNewUserComponent,
     OurZooComponent,
     MyAccountComponent,
-    MyAnimalsComponent
+    MyAnimalsComponent,
+    EditMyAnimalComponent
      
   ],
   imports: [
@@ -45,7 +49,7 @@ import { MyAnimalsComponent } from './components/my-animals/my-animals.component
     CommonModule,
     FormsModule
   ],
-  providers: [AnimalService, UserService, AuthenticationService, AuthGuard,  {
+  providers: [AnimalService, UserService, AnimalDataService, UserDataService, AuthenticationService, AuthGuard,  {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthHttpInterceptorService,
     multi: true

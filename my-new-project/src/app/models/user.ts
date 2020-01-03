@@ -1,12 +1,14 @@
 export class User {
+id: number;
 name: String;
 password: String;
 email: String;
-age: Number;
+age: number;
 role: String;
 
 
-constructor(name: String, password: String, email: String, age: Number, role: String) {
+constructor(id: number, name: String, password: String, email: String, age: number, role: String) {
+    this.id = id;
     this.name = name;
     this.password = password;
     this.email = email;

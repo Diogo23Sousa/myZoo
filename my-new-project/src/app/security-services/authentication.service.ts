@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
+import { UserDataService } from '../services/user-data.service';
 
 // MY JSON OBJECT
 export class User{
@@ -18,7 +19,7 @@ export class JwtResponse{
 })
 export class AuthenticationService {
 
-  constructor(private httpClient:HttpClient, private userService: UserService) {}
+  constructor(private httpClient:HttpClient, private userDataService: UserDataService) {}
  
 
      authenticate(username, password) {

@@ -76,7 +76,7 @@ export class OurUsersComponent implements OnInit {
     }
   }
 
-  deleteUserById (number: Number) {
+  deleteUserById (number: number) {
     this.userService.deleteById(number).subscribe(x => console.log(x));
     location.reload();
   }

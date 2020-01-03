@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-my-account',
@@ -8,10 +9,12 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./my-account.component.css']
 })
 export class MyAccountComponent implements OnInit {
+id: number;
 userName: String;
 email: String;
 password: String;
-age: Number;
+age: number;
+role: String;
 
 missingParameters: String = 'none';
 missingParametersPassword: String = 'none';
@@ -27,30 +30,30 @@ userUpdatedSucess: String = 'none';
 userUpdatedUnsucess :String = 'none';
 
 booleanUsernameAvailable: boolean = false;
-booleanEmailAvailable: boolean = false;
+booleanEmailAvailable: boolean = true;
 
-constructor(private userService: UserService) { }
+constructor(private userService: UserService, private userDataService: UserDataService) { }
 
 ngOnInit() {
-    // With the UNIQUE username of the TOKEN we get the info of the account
-    this.userService.findByName(sessionStorage.getItem('username')).
-    subscribe(myAccountInfo => {
-      let myAccount = myAccountInfo[0];
-      this.userName = myAccount.name;
-      this.email = myAccount.email;
-      this.password = myAccount.password;
-      this.age = myAccount.age;
+    this.userService.findByName(sessionStorage.getItem('username')).subscribe(
+      myAccountInfo => {
+      this.id = myAccountInfo[0].id;
+      this.userName = myAccountInfo[0].name
+      this.email = myAccountInfo[0].email;
+      this.password = myAccountInfo[0].password;
+      this.age = myAccountInfo[0].age;
+      this.role = myAccountInfo[0].role;
   });
 }
 
 updateMyAccount() {
-  console.log("THIS IS THE VALUE OF MY BEFORE AFTER:" + this.email);
   // Performs a validation before making any request sending helping messages to the user
     this.ngModelValidation();
   // After Validation, if the user meets the required parameters the userInfo will be updated
     if (this.userName != null && this.email != null && this.age != null && this.password != null && this.booleanUsernameAvailable === this.booleanEmailAvailable === true){
-        const user = new User (this.userName, this.password, this.email, this.age, "USER");
-        this.userService.updateUser(user, sessionStorage.getItem('username')).subscribe(updateUser => console.log(updateUser));
+        
+        const user = new User (this.id, this.userName, this.password, this.email, this.age, this.role);
+        this.userService.newUser(user).subscribe(updateUser => console.log(updateUser));
         this.emailFormatIsInvalid = 'none';
         this.ageIsNaN = 'none';
         this.missingParameters = 'none';
@@ -71,11 +74,11 @@ ngModelValidation() {
   if (this.userName === '') {
     this.userName = null;
   }
-  if (this.email === '' || this.email === null || this.email.length < 5) {
+  if (this.email === '' || this.email.length < 5) {
     this.emailFormatIsInvalid = '';
     this.email = null;
   }
-  if (isNaN( + this.age)) {
+  if (isNaN(this.age)) {
     this.ageIsNaN = '';
     this.age = null;
   }

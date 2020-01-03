@@ -20,7 +20,6 @@ section .section-title {
     justify-content: left;
 }
 
-
 .frontside .card,
 .backside .card {
     height: 300px;

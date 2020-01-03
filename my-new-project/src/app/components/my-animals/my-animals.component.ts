@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { AnimalService } from 'src/app/services/animal.service';
 import { Animal } from 'src/app/models/animal';
+import { RouterEvent, RouterLink, Router } from '@angular/router';
+import { AnimalDataService } from 'src/app/services/animal-data.service';
 
 @Component({
   selector: 'app-my-animals',
@@ -10,7 +12,7 @@ import { Animal } from 'src/app/models/animal';
 export class MyAnimalsComponent implements OnInit {
   animals: Animal [];
 
-  constructor(private animalService: AnimalService) { }
+  constructor(private animalService: AnimalService, private animalDataService: AnimalDataService, private router: Router) { }
 
   ngOnInit() {
    this.getAllUserAnimals();
@@ -18,7 +20,12 @@ export class MyAnimalsComponent implements OnInit {
 
   getAllUserAnimals () {
     this.animalService.findByUser(sessionStorage.getItem("username")).subscribe(userAnimals => {
-      this.animals = userAnimals;  
+      this.animals = userAnimals;
   })
 }
-}
+
+animalToBeUpdated(animalId: number) {
+    this.animalDataService.sendAnimalId(animalId);
+    this.router.navigate(['/editmyanimal']);
+  }
+  }

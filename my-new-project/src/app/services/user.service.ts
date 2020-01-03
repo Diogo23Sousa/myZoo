@@ -16,6 +16,10 @@ private userUrl: string;
     this.userUrl = 'http://localhost:8080/user';
   }
  
+  public findById(id: number) {
+    return this.httpClient.get<User>(this.userUrl.concat('/get/') + id);
+  }
+
   public findAll() {
     return this.httpClient.get<User[]>(this.userUrl.concat('/getall'));
   }
@@ -44,7 +48,7 @@ private userUrl: string;
     return this.httpClient.get<User[]>(this.userUrl.concat('/getbyage/' + age)); 
   }
 
-  public deleteById (number: Number) {
+  public deleteById (number: number) {
   return this.httpClient.delete(this.userUrl.concat('/delete/' + number));  
   }
 

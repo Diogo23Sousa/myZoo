@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticationService } from 'src/app/security-services/authentication.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 
 @Component({
@@ -16,8 +17,9 @@ userNameLogin: String;
 passwordLogin: String;
 validLogin: String = 'none';
 invalidLogin: String = 'none';
+userId: number;
 
-constructor(private authenticationService : AuthenticationService) {
+constructor(private authenticationService : AuthenticationService, private userDataService: UserDataService) {
 }
 
   ngOnInit() {

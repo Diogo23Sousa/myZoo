@@ -1,10 +1,10 @@
 <!-- ALERTS FOR FORM VALIDATION -->
 <div class="alert alert-success" [style.display]='animalCreatedSucess'>
-    <strong> Animal was added to the Zoo!</strong> Check your colection <a routerLink="/myanimals" class="alert-link">here</a>.
+    <strong> Animal was updated!</strong> Check your colection <a routerLink="/myanimals" class="alert-link">here</a>.
 </div>
 <div class="container login-container">
     <div class="login-form-1">
-        <h3>New Animal</h3> <hr>
+        <h3>Edit Animal</h3> <hr>
         <form>
             <div class="form-group">
                 <div class="formForAnimalName">             
@@ -45,6 +45,6 @@
             <!-- This is the messages that appear when the NgModelValidation() is performed -->
             <div class="alert alert-danger missingFields" [style.display]='missingParameters'>Missing One or More Fields.</div>
             <div class="alert alert-danger missingFields" [style.display]='missingNumberParameters'>Age and Price must be a Numbers.</div>
-            <button class="btnSubmit" (click)="createNewAnimal()">Create</button>
+            <button class="btnSubmit" (click)="updateMyAnimal()">Update</button>
         </form>
 </div>
