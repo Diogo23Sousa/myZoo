@@ -34,17 +34,14 @@
             </div>
 
             <div class="form-group">
-                <label for="image">Upload an Image:</label>
-                <!-- USING userImageSource -->
-                <input type="file" class="form-control inputForImage" placeholder="Images cannot be bigger than 5MB"/>
-                <label >Or enter the image URL:</label>
+                <label for="image">Upload an Image URL:</label>
                 <!-- USING imageURL -->
-                <input type="text" class="form-control" placeholder="Must be an imageURL" [(ngModel)]="animalImage" name="animalImage"/>
+                <input type="text" class="form-control" placeholder="e.g. https://media.tacdn.com/media/attractions-splice-spp-674x446/07/26/3c/87.jpg" [(ngModel)]="animalImage" name="animalImage"/>
             </div>
             
             <!-- This is the messages that appear when the NgModelValidation() is performed -->
             <div class="alert alert-danger missingFields" [style.display]='missingParameters'>Missing One or More Fields.</div>
-            <div class="alert alert-danger missingFields" [style.display]='missingNumberParameters'>Age and Price must be a Numbers.</div>
+            <div class="alert alert-danger missingFields" [style.display]='missingNumberParameters'>Age and Price must be a number.</div>
             <button class="btnSubmit" (click)="createNewAnimal()">Create</button>
         </form>
 </div>

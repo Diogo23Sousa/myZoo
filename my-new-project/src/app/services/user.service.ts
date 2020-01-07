@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
+import { Email } from '../models/email';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
+const httpOptions2 = {
+  headers: new HttpHeaders({ 'Content-Type' : 'text/plain; charset=utf-8'})
+}
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +29,11 @@ private userUrl: string;
     return this.httpClient.get<User[]>(this.userUrl.concat('/getall'));
   }
 
-  public newUser (user: User) {
+  public newUser(user: User) {
     return this.httpClient.post<User>(this.userUrl.concat('/create'), JSON.stringify(user), httpOptions);
   }
 
-  public updateUser (user: User, name: String) {
+  public updateUser(user: User, name: String) {
     return this.httpClient.put<User>(this.userUrl.concat('/update/') + name, user);
   }
 
@@ -70,5 +75,10 @@ private userUrl: string;
 
   public deleteAll() {
     return this.httpClient.delete(this.userUrl.concat('/deleteall'));
+  }
+
+  public sendHelpEmail (email: Email) {
+    console.log("I'm on my user services sending this message: " + email);
+    return this.httpClient.post<String>(this.userUrl.concat("/email/help"), JSON.parse(JSON.stringify(email)), httpOptions);
   }
 }
