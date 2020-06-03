@@ -26,7 +26,7 @@ private animalUrl: string;
   }
 
   public findByName(name: String) {
-    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyname/' + name)); 
+    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyname/' + name));
   }
 
   public findByLetter (letter: String) {
@@ -34,7 +34,7 @@ private animalUrl: string;
   }
 
   public findBySpecie(name: String) {
-    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyspecie/' + name)); 
+    return this.httpClient.get<Animal[]>(this.animalUrl.concat('/getbyspecie/' + name));
   }
   
   public findSpecieByLetter (letter: String) {
@@ -61,15 +61,15 @@ private animalUrl: string;
     return this.httpClient.post<Animal>(this.animalUrl.concat('/create'), JSON.stringify(animal), httpOptions);
   }
 
-  public deleteById (number: Number) {
+  public deleteById(number: Number) {
   return this.httpClient.delete(this.animalUrl.concat('/delete/' + number));  
   }
 
-  public deleteAll () {
+  public deleteAll() {
     return this.httpClient.delete(this.animalUrl.concat('/deleteall'));
   }
 
   public generateAnimals(body: String) {
     return this.httpClient.post(this.animalUrl.concat('/generate') , body);
-  } 
+  }
 }

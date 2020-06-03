@@ -40,7 +40,6 @@ import { UserDataService } from './services/user-data.service';
     MyAccountComponent,
     MyAnimalsComponent,
     EditMyAnimalComponent
-     
   ],
   imports: [
     BrowserModule,
